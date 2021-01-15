@@ -1,0 +1,51 @@
+﻿@using WebAppNetFamework.ENTITIES;
+@using WebAppNetFamework.BUSINESS_SERVICES;
+@{
+    Layout = null;
+}
+@{ 
+    string resultPerimeter = string.Empty;
+    if (IsPost)
+    {
+        TRIANGLE triangle;
+        triangle.diemA.x = int.Parse(Request["Ax"]);
+        triangle.diemA.y = int.Parse(Request["Ay"]);
+        triangle.diemB.x = int.Parse(Request["Bx"]);
+        triangle.diemB.y = int.Parse(Request["By"]);
+        triangle.diemC.x = int.Parse(Request["Cx"]);
+        triangle.diemC.y = int.Parse(Request["Cy"]);
+        double perimeter = SOLVE_TRIANGLE.TrianglePerimeter(triangle);
+        resultPerimeter = "Chu vi tam giác là : " + perimeter;
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post" action="~/UI/View_Triangle_Perimeter.cshtml">
+            Hoành độ điểm A:<br>
+            <input type="text" name="Ax" value=""><br><br>
+            Tung độ điểm A:<br>
+            <input type="text" name="Ay" value=""><br><br>
+            Hoành độ điểm B:<br>
+            <input type="text" name="Bx" value=""><br><br>
+            Tung độ điểm B:<br>
+            <input type="text" name="By" value=""><br><br>
+            Hoành độ điểm C:<br>
+            <input type="text" name="Cx" value=""><br><br>
+            Tung độ điểm C:<br>
+            <input type="text" name="Cy" value=""><br><br>
+            <input type="submit" value="Submit" class="submit">
+        </form>
+
+        <div>
+            @resultPerimeter
+        </div>
+    </div>
+</body>
+</html>
